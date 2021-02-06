@@ -1,6 +1,6 @@
 <?php
 //class tuong tac vs database bac 1 (chung cho cac class sau nay)
-class Database{
+class database{
     var $sql,$pdo,$statement;//$sql dung chua cau sql, $pdo dung chua pdo, $statement chua du lieu anh xa tu sql sang php
 
     //pt khoi tao, khi new la mo luon ket noi

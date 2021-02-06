@@ -1,11 +1,12 @@
 <?php 
-use sanpham;
+
 class sanphamcontroller extends controller
 {
     function index()
     {
         include 'model/sanpham.php';
-        $sp = sanpham::Layloai();
+        $cn = new sanpham();
+        $sp = $cn->layloai();
         //var_dump($sp);exit;
         $this->render('view/sanpham/danhsach.php',['sp'=>$sp]);
     }

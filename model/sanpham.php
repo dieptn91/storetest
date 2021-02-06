@@ -1,18 +1,5 @@
 <?php
-use Database;
-
-class sanpham{
-    static $db_connect;
-    static $this; // your top variable set as static
-
-    public function __construct(Database $db){
-        try{
-
-            $this->db_connect= $db;
-        }catch(PDOException $e){
-            exit($e->getMessage());
-        }
-    }
+class sanpham extends database{
     //pt lay 1 tai khoan voi param cho truoc
     function laytk($tendn,$matkhau){
         $this->getsql('select * from quantri where tendangnhap=? and matkhau=?');
@@ -65,10 +52,9 @@ class sanpham{
         return $this->savetk([$masp]);
     }
 
-        public static function Layloai(){
-
-            self::$db_connect->getsql('select *,sanpham.hinhanh as hinhanh from ((sanpham join loaisp on sanpham.maloai=loaisp.maloai) join nhacungcap on sanpham.mancc=nhacungcap.mancc and sanpham.trangthai!=3)');
-        return  self::$db_connect->db_connect->loadrows();
+        function layloai(){
+            $this->getsql('select *,sanpham.hinhanh as hinhanh from ((sanpham join loaisp on sanpham.maloai=loaisp.maloai) join nhacungcap on sanpham.mancc=nhacungcap.mancc and sanpham.trangthai!=3)');
+        return  $this->loadrows();
     }
 
 }

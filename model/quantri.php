@@ -12,8 +12,10 @@ class quantri extends database{
     //pt lay 1 tai khoan voi maqt
     function layma($maqt){
          $this->getsql('select * from quantri where maqt=?');
-        return $this->loadrow([$maqt]);
-        //return $user;
+        $user = $this->loadrow([$maqt]);
+        //var_dump($user);exit;
+       return $user;
+        
     }
 
     //pt lay 1 tai khoan voi tendangnhap

@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">            
+                            <input type="password" name="matkhau" class="form-control" placeholder="" aria-describedby="helpId">            
                         </div>
                         <div class="form-group">
                             <label for="">Status</label>

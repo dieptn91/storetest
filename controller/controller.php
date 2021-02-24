@@ -10,4 +10,15 @@ abstract class controller{
         extract($param);//gán các giá trị của mảng thành biến dựa trên key
         include 'public/'.$layout.'.php';
     }
+
+    function validatedata($param=[]){
+        foreach($param as $key){
+            if((!isset($key))||$key==='')
+            {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
 }

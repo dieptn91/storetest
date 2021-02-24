@@ -8,7 +8,7 @@ class sanpham extends database{
 
     //pt lay 1 tai khoan voi maqt
     function layma($masp){
-        $this->db_connect->getsql('select * from sanpham where masp=?');
+        $this->getsql('select * from sanpham where masp=?');
         return $this->loadrow([$masp]);
         //return $user;
     }

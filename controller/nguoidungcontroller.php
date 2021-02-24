@@ -59,8 +59,11 @@ class nguoidungcontroller extends controller
     function them()
     {
         $thongbao = '';
-        $avt = myupload($_FILES['avatar']??'','images/',$err)??'';
-        if(isset($_POST['tenqt'],$_POST['tendangnhap'],$_POST['matkhau'],$_POST['trangthai']))
+        $avt = myupload($_FILES['avatar']??'','','images/',$err)??null;
+        if($this->validatedata([$_POST['tenqt']??'',$_POST['tendangnhap']??'',$_POST['matkhau']??'',$_POST['trangthai']??''])==false){
+            $thongbao = '<div class="alert alert-danger">Thông tin đăng kí thiếu</div>';
+        }
+        else
         {
             include 'model/quantri.php';
             $user=new quantri();
@@ -104,10 +107,13 @@ class nguoidungcontroller extends controller
         include 'model/quantri.php';
             $maus=new quantri();
             $us= $maus->layma($user);
+            //var_dump($us);
             $avt = myupload($_FILES['avatar']??'',$us->avatar,'images/',$err)??'';
+            
             //var_dump($us);exit();
         if(isset($_POST['tendangnhap'])){
-            $check = $maus->suatk($_POST['tenqt']??$us->tenqt,$_POST['tendangnhap']??$us->tendangnhap,$_POST['matkhau']??$us->matkhau,$_POST['manhom']??$us->manhom,$avt??$us->avatar,$_POST['trangthai']??$us->trangthai,date("Y-m-d"),date("Y-m-d"),$user);
+            $mk = ($_POST['matkhau']==null)?$us->matkhau:$_POST['matkhau'];
+            $check = $maus->suatk($_POST['tenqt']??$us->tenqt,$_POST['tendangnhap']??$us->tendangnhap,$mk,$_POST['manhom']??$us->manhom,$avt??$us->avatar,$_POST['trangthai']??$us->trangthai,date("Y-m-d"),date("Y-m-d"),$user);
             //var_dump($check);exit;
             if($check != false){            
                 $thongbao = '<div class="alert alert-success">Sửa thành công</div>';
